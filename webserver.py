@@ -12,6 +12,8 @@ def root():
 @app.errorhandler(404)
 def handler(_):
     path = request.path[1:]
+    if path.upper() == path:
+        path = path.lower()
     conn, cursor = connect()
     cursor.execute("SELECT destination FROM links WHERE path = %s", (path,))
     url = cursor.fetchone()
