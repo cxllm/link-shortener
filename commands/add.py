@@ -3,9 +3,7 @@ from db import connect
 
 def execute():
     conn, cursor = connect()
-    path = input("Enter the path of the shortened URL: ")
-    if path.upper() == path:
-        path = path.lower()
+    path = input("Enter the path of the shortened URL: ").lower()
     exists = True
     while exists:
         cursor.execute("SELECT * FROM links WHERE path = %s", (path,))
